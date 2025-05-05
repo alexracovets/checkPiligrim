@@ -1,7 +1,7 @@
 'use client';
 
 import { CircleArrowRight, CircleArrowLeft } from "lucide-react";
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
@@ -9,6 +9,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselApi } from '@/componen
 import { Slider } from "@/components/ui/slider";
 
 import useMainSlider from '@/store/useMainSlider';
+import useIsMobile from "@/store/useIsMobile";
 
 interface Slide {
     page: string;
@@ -28,6 +29,8 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
     const [sliderActive, setSliderActive] = useState(false);
     const [api, setApi] = useState<CarouselApi>();
     const sliderRef = useRef(null);
+    const isMobile = useIsMobile(state => state.isMobile);
+
 
     const sliderOptions = {
         align: "start" as const,
@@ -50,21 +53,25 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
             setCurrentSlide(currentSlide - 1);
         }
     }
-    const toSlide = (slide: number) => {
+    const toSlide = useCallback((slide: number) => {
         if (slide + 1 === slides.length - 1) {
             setCurrentSlide(0)
         } else {
-            setCurrentSlide(slide + 1);
+            if (isMobile) {
+                setCurrentSlide(slide);
+            } else {
+                setCurrentSlide(slide + 1);
+            }
         }
-    }
+    }, [isMobile, slides.length])
 
-    const toNextSlide = () => {
+    const toNextSlide = useCallback(() => {
         if (currentSlide === slides.length - 1) {
             setCurrentSlide(0)
         } else {
             setCurrentSlide(currentSlide + 1);
         }
-    }
+    }, [currentSlide, slides.length])
 
     useEffect(() => {
         if (!api) return;
