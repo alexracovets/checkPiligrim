@@ -46,7 +46,7 @@ export const MainSlider: React.FC<Props> = ({ slides }) => {
     return (
         <Carousel
             opts={{
-                duration: 20,
+                duration: isMobile ? 0 : 20,
                 startIndex: 8
             }}
             className={cn(

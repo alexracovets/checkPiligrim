@@ -34,7 +34,7 @@ export const TextSlider: React.FC<Props> = ({ slides }) => {
     const [api, setApi] = useState<CarouselApi>();
     const [isBtnHovered, setIsBtnHovered] = useState(false);
     const sliderOptions = {
-        duration: 20,
+        duration: isMobile ? 0 : 20,
         startIndex: slides.length
     };
 
