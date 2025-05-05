@@ -45,7 +45,7 @@ export const TextSlider: React.FC<Props> = ({ slides }) => {
         } else {
             api.scrollTo(prevSlider);
         }
-    }, [isMobile, currentSlide, slides.length])
+    }, [isMobile, currentSlide])
 
     useEffect(() => {
         changeSlide(api, prevSlider);

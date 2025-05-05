@@ -44,7 +44,7 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
         const slidesCount = slides.length;
         const nearestSlide = Math.round((sliderValue[0] / 100) * (slidesCount - 1));
         setCurrentSlide(nearestSlide);
-    }, [sliderValue, slides, setCurrentSlide]);
+    }, [sliderValue, slides.length, setCurrentSlide]);
 
     const toPrevSlide = useCallback(() => {
         if (currentSlide === 0) {
@@ -80,7 +80,7 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
         if (!sliderActive) {
             setSliderValue([Math.round((currentSlide / (slides.length - 1)) * 100)]);
         }
-    }, [api, currentSlide, slides, sliderActive])
+    }, [api, currentSlide, slides.length, sliderActive])
 
     useEffect(() => {
         setLengthSlider(slides.length)
