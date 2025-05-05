@@ -46,13 +46,14 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
         setCurrentSlide(nearestSlide);
     }, [sliderValue, slides, setCurrentSlide]);
 
-    const toPrevSlide = () => {
+    const toPrevSlide = useCallback(() => {
         if (currentSlide === 0) {
             setCurrentSlide(slides.length - 1);
         } else {
             setCurrentSlide(currentSlide - 1);
         }
-    }
+    }, [currentSlide, slides.length, setCurrentSlide])
+
     const toSlide = useCallback((slide: number) => {
         if (slide + 1 === slides.length - 1) {
             setCurrentSlide(0)
@@ -63,7 +64,7 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
                 setCurrentSlide(slide + 1);
             }
         }
-    }, [isMobile, slides.length])
+    }, [isMobile, slides.length, setCurrentSlide])
 
     const toNextSlide = useCallback(() => {
         if (currentSlide === slides.length - 1) {
@@ -71,7 +72,7 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
         } else {
             setCurrentSlide(currentSlide + 1);
         }
-    }, [currentSlide, slides.length])
+    }, [currentSlide, slides.length, setCurrentSlide])
 
     useEffect(() => {
         if (!api) return;
