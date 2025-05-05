@@ -1,0 +1,27 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^afon$ /afon.html [L]
+
+RewriteRule ^tours$ /tours.html [L]
+RewriteRule ^tours/bolgaria$ /tours/bolgaria.html [L]
+RewriteRule ^tours/greece$ /tours/greece.html [L]
+RewriteRule ^tours/georgia$ /tours/georgia.html [L]
+RewriteRule ^tours/transcarpathia$ /tours/transcarpathia.html [L]
+RewriteRule ^tours/poland$ /tours/poland.html [L]
+RewriteRule ^tours/romania$ /tours/romania.html [L]
+RewriteRule ^tours/hungary$ /tours/hungary.html [L]
+RewriteRule ^tours/montenegro$ /tours/montenegro.html [L]
+RewriteRule ^tours/jerusalem$ /tours/jerusalem.html [L]
+
+RewriteRule ^blog$ /blog.html [L]
+RewriteRule ^blog/food$ /blog/food.html [L]
+RewriteRule ^blog/ua_afon$ /blog/ua_afon.html [L]
+RewriteRule ^blog/sleeping$ /blog/sleeping.html [L]
+RewriteRule ^blog/saints$ /blog/saints.html [L]
+RewriteRule ^blog/english$ /blog/english.html [L]
+
+# Перенаправлення на головну сторінку для всіх інших сторінок (404)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
