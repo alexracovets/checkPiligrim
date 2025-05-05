@@ -36,7 +36,7 @@ export const CardSlider: React.FC<Props> = ({ slides }) => {
         align: "start" as const,
         loop: true,
         dragFree: true,
-        duration: isMobile ? 0 : 20,
+        duration: 20,
         startIndex: 0
     }
 
